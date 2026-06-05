@@ -11,12 +11,13 @@ Designed with an intense focus on modern UX/UI, Luxe Store delivers a premium sh
 ---
 
 ## ✨ Features
-*   **Crystal Glassmorphism UI:** Custom-built `CrystalGlassContainer` and liquid app bars that softly blur background elements for a highly premium, 3D frosted glass look.
-*   **Dynamic Animations:** Staggered list entrances, fluid background gradient blobs, and micro-interactions powered by `flutter_animate`.
-*   **Reactive State Management:** Fully type-safe and performant state management using **Riverpod** ensuring instantaneous cart updates.
-*   **Persistent Offline Cart:** Your cart and user preferences are safely stored locally using **Hive** and **SharedPreferences**.
-*   **Clean Architecture:** Highly scalable folder structure separating Features (Auth, Cart, Products) and Core utilities.
-*   **Deep Dark Mode:** Tailored specifically for modern OLED screens, providing maximum contrast and battery efficiency.
+*   **Real-Time Product Catalog:** Browse a dynamic list of products fetched instantly via our `Dio` network layer.
+*   **Detailed Product Views:** Tap into any product to view full-resolution imagery, deep descriptions, and pricing details.
+*   **Persistent Shopping Cart:** Add or remove items, adjust quantities, and instantly view your checkout total. Cart state is saved offline using **Hive**.
+*   **Localization Support:** Seamlessly switch between multiple languages dynamically.
+*   **User Profiles:** Interactive profile screens for users to manage their details and avatars.
+*   **Premium Glassmorphism UI:** Custom-built crystal glass containers, fluid gradient blobs, and staggered list animations (`flutter_animate`) for a gorgeous, 60fps OLED-friendly shopping experience.
+*   **Reactive State Management:** Fully type-safe and highly scalable state management powered by **Riverpod**.
 
 ## 🛠 Tech Stack
 *   **Framework:** Flutter (Dart)
@@ -71,7 +72,7 @@ Designed with an intense focus on modern UX/UI, Luxe Store delivers a premium sh
 ## 🎥 Demo Video
 
 [Watch the Demo Video](assets/screenshots/demo.mp4)
-*(Note: The demo video runs at a crisp 60fps in high resolution, showcasing the liquid glass background animations!)*
+*(Note: The demo video may looks low on quality but app runs at a crisp 60fps in high resolution, showcasing the liquid glass background animations!)*
 
 ---
 
