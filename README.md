@@ -77,7 +77,7 @@ Designed with an intense focus on modern UX/UI, Luxe Store delivers a premium sh
 ---
 
 ## 📦 APK Download
-[⬇️ Download Latest APK](#)
+[⬇️ Download Latest APK](https://drive.google.com/file/d/1XViDpV6wQEAXsQmunsDtzJHkOvwO-_OY/view?usp=sharing)
 
 > **Note:** When downloading, Google Drive may show a warning saying "Google Drive can't scan this file for viruses". Please click "Download anyway" — this is normal for all APK files.
 
