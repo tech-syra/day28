@@ -30,5 +30,10 @@
   "ok": "OK",
   "delete": "Delete",
   "edit": "Edit",
-  "save": "Save"
+  "save": "Save",
+  "username": "Username",
+  "profile": "PROFILE",
+  "userProfile": "User Profile",
+  "language": "Language",
+  "removePhoto": "Remove Photo"
 }

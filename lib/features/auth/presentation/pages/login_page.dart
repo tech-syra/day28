@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lucide_icons/lucide_icons.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:day28/core/storage/secure_storage_service.dart';
 import 'package:day28/features/auth/providers/auth_provider.dart';
 import 'package:day28/core/auth/auth_notifier.dart';
 import 'package:day28/core/analytics/firebase_analytics_service.dart';
 import 'package:day28/core/widgets/language_switcher.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import '../../../../core/theme/minimal_colors.dart';
+import '../../../../core/widgets/minimal_text_field.dart';
+import '../../../../core/widgets/minimal_button.dart';
+import '../../../../core/widgets/minimal_glass_container.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -25,7 +32,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   void initState() {
     super.initState();
 
-    // if already logged in, go to home
     if (authNotifier.isLoggedIn) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) context.go('/');
@@ -57,7 +63,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
     if (username.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter username and password')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.error)),
       );
       return;
     }
@@ -68,23 +74,17 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       final api = ref.read(authProvider);
       final result = await api.login(username: username, password: password);
 
-      // persist token
       await SecureStorageService().saveToken(result.token);
-
-        // analytics: login
-        await FirebaseAnalyticsService.logLogin();
+      await FirebaseAnalyticsService.logLogin();
 
       if (!mounted) return;
 
-      // update auth state so router redirects
       authNotifier.setLoggedIn(true);
-
-      // navigate to home (product list)
       context.go('/');
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login failed: $e')),
+          SnackBar(content: Text('${AppLocalizations.of(context)!.error}: $e')),
         );
       }
     } finally {
@@ -94,90 +94,81 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     return Scaffold(
+      backgroundColor: MinimalColors.background,
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text(''),
         actions: const [LanguageSwitcher()],
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.shopping_bag,
-                size: 80,
-              ),
-
-              const SizedBox(height: 20),
-
-              const Text(
-                'Ecom Store',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: MinimalGlassContainer(
+                padding: const EdgeInsets.all(32),
+                borderRadius: 32,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      LucideIcons.fingerprint,
+                      size: 64,
+                      color: MinimalColors.primary,
+                    ).animate().scale(delay: 200.ms, duration: 600.ms, curve: Curves.easeOutBack),
+                    
+                    const SizedBox(height: 24),
+                    
+                    Text(
+                      l10n.loginButton.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w800,
+                        color: MinimalColors.primary,
+                      ),
+                    ).animate().fade(delay: 300.ms),
+                    
+                    const SizedBox(height: 40),
+                    
+                    MinimalTextField(
+                      controller: usernameController,
+                      hintText: l10n.username,
+                    ).animate().slideY(begin: 0.1, delay: 500.ms).fade(delay: 500.ms),
+                    
+                    const SizedBox(height: 16),
+                    
+                    MinimalTextField(
+                      controller: passwordController,
+                      hintText: l10n.password,
+                      obscureText: obscureText,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            obscureText = !obscureText;
+                          });
+                        },
+                        icon: Icon(
+                          obscureText ? LucideIcons.eye : LucideIcons.eyeOff,
+                          color: MinimalColors.textLight,
+                          size: 20,
+                        ),
+                      ),
+                    ).animate().slideY(begin: 0.1, delay: 600.ms).fade(delay: 600.ms),
+                    
+                    const SizedBox(height: 40),
+                    
+                    MinimalButton(
+                      text: l10n.loginButton,
+                      onPressed: _onSubmit,
+                      isLoading: isLoading,
+                    ).animate().slideY(begin: 0.1, delay: 700.ms).fade(delay: 700.ms),
+                  ],
                 ),
-              ),
-
-              const SizedBox(height: 40),
-
-              TextField(
-                controller: usernameController,
-                decoration: const InputDecoration(
-                  labelText: 'Username',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              TextField(
-                controller: passwordController,
-                obscureText: obscureText,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  border: const OutlineInputBorder(),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        obscureText = !obscureText;
-                      });
-                    },
-                    icon: Icon(
-                      obscureText ? Icons.visibility : Icons.visibility_off,
-                    ),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 24),
-
-              SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: ElevatedButton(
-                  onPressed: isLoading ? null : _onSubmit,
-                  child: isLoading
-                      ? const SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: Colors.white,
-                          ),
-                        )
-                      : const Text('Login'),
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              const Text(
-                '(Demo credentials pre-filled)',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
-              ),
-            ],
+              ).animate().fade(duration: 800.ms, curve: Curves.easeOut),
+            ),
           ),
         ),
       ),

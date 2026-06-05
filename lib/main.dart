@@ -9,6 +9,8 @@ import 'core/router/app_router.dart';
 import 'core/localization/localization_service.dart';
 import 'core/providers/locale_provider.dart';
 import 'firebase_options.dart';
+import 'core/theme/minimal_theme.dart';
+import 'core/storage/hive_storage_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +23,8 @@ Future<void> main() async {
 
   // Initialize localization
   LocalizationService.initializeLocale();
+  
+  await HiveStorageService.init();
 
   runApp(
     AppFlavor.wrap(
@@ -40,6 +44,8 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      theme: MinimalTheme.lightTheme,
+      themeMode: ThemeMode.light,
       routerConfig: appRouter,
       localizationsDelegates: const [
         AppLocalizations.delegate,

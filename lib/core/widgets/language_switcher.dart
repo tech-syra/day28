@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/providers/locale_provider.dart';
 
 class LanguageSwitcher extends ConsumerWidget {
-  const LanguageSwitcher({super.key});
+  final Widget? child;
+
+  const LanguageSwitcher({super.key, this.child});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,35 +20,29 @@ class LanguageSwitcher extends ConsumerWidget {
         PopupMenuItem(
           value: 'en',
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Radio<String>(
-                value: 'en',
-                groupValue: currentLocale.languageCode,
-                onChanged: (_) {},
-              ),
-              const SizedBox(width: 8),
               const Text('English'),
+              if (currentLocale.languageCode == 'en')
+                const Icon(Icons.check, size: 20),
             ],
           ),
         ),
         PopupMenuItem(
           value: 'hi',
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Radio<String>(
-                value: 'hi',
-                groupValue: currentLocale.languageCode,
-                onChanged: (_) {},
-              ),
-              const SizedBox(width: 8),
               const Text('हिंदी'),
+              if (currentLocale.languageCode == 'hi')
+                const Icon(Icons.check, size: 20),
             ],
           ),
         ),
       ],
-      child: const Padding(
+      child: child ?? const Padding(
         padding: EdgeInsets.all(8.0),
-        child: Icon(Icons.language),
+        child: Icon(Icons.language, color: Colors.white),
       ),
     );
   }

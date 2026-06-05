@@ -1,0 +1,25 @@
+import 'package:dio/dio.dart';
+import '../storage/secure_storage_service.dart';
+
+class AuthInterceptor extends Interceptor {
+  final SecureStorageService _storageService = SecureStorageService();
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    // If we have an auth token, attach it to the request header
+    final token = await _storageService.getToken();
+    if (token != null) {
+      options.headers['Authorization'] = 'Bearer $token';
+    }
+    super.onRequest(options, handler);
+  }
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    // We can handle global 401 errors here (e.g. log out user)
+    if (err.response?.statusCode == 401) {
+      // Trigger logout or token refresh logic
+    }
+    super.onError(err, handler);
+  }
+}

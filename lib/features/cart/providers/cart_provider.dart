@@ -91,7 +91,30 @@ class Cart extends _$Cart {
     state = AsyncValue.data(updatedCart);
     _saveCart();
   }
-}
 
+  void updateQuantity(int productId, int newQuantity) {
+    if (newQuantity <= 0) {
+      removeFromCart(productId);
+      return;
+    }
+    
+    final items = state.valueOrNull ?? [];
+    final updatedCart = [
+      for (final item in items)
+        if (item.product.id == productId)
+          item.copyWith(quantity: newQuantity)
+        else
+          item,
+    ];
+
+    state = AsyncValue.data(updatedCart);
+    _saveCart();
+  }
+
+  void clearCart() {
+    state = const AsyncValue.data([]);
+    _saveCart();
+  }
+}
 
 

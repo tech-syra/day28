@@ -1,6 +1,7 @@
 import 'package:day28/features/auth/presentation/pages/login_page.dart';
 import 'package:day28/features/auth/presentation/pages/splash_page.dart';
 import 'package:day28/core/auth/auth_notifier.dart';
+import 'package:day28/features/auth/presentation/pages/profile_page.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/cart/presentation/pages/cart_screen.dart';
@@ -63,6 +64,12 @@ final appRouter = GoRouter(
       path: '/cart',
       builder: (context, state) {
         return const CartScreen();
+      },
+    ),
+    GoRoute(
+      path: '/profile',
+      builder: (context, state) {
+        return const ProfilePage();
       },
     ),
   ],
