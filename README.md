@@ -63,15 +63,21 @@ Designed with an intense focus on modern UX/UI, Luxe Store delivers a premium sh
 
 ## 📸 Screenshots
 
-| Splash / Home | Cart Screen | Product Details | Profile |
-|:---:|:---:|:---:|:---:|
-| <img src="assets/screenshots/home.png" width="200"/> | <img src="assets/screenshots/cart.png" width="200"/> | <img src="assets/screenshots/detail.png" width="200"/> | <img src="assets/screenshots/profile.png" width="200"/> |
+## Home 
+<img width="324" height="720" alt="screenshot_20260605-181149_720" src="https://github.com/user-attachments/assets/37121051-e6ed-4fee-8dae-1ea4f823c8b2" />
 
-*(Note: Replace the screenshot paths above with your actual images once uploaded to GitHub)*
+## Cart Screen
+<img width="324" height="720" alt="screenshot_20260605-181508_720" src="https://github.com/user-attachments/assets/e707261a-9121-4e94-a5f8-64217c57df11" />
+
+## Product Details
+<img width="324" height="720" alt="screenshot_20260605-181525_720" src="https://github.com/user-attachments/assets/e1713105-bebf-40c6-ab93-6836493f5e88" />
+
+## Profile 
+<img width="324" height="720" alt="screenshot_20260605-181545_720" src="https://github.com/user-attachments/assets/aab86050-0a5e-4f88-8b4b-68d904ebb9df" />
 
 ## 🎥 Demo Video
+https://uncanny-consulting.slack.com/files/U0B2R7TRBDM/F0B8G42S7N1/vn20260605_185059.mp4?origin_team=T03AH3SMZTR&origin_channel=D0B2R7U21N3
 
-[Watch the Demo Video](assets/screenshots/demo.mp4)
 *(Note: The demo video may looks low on quality but app runs at a crisp 60fps in high resolution, showcasing the liquid glass background animations!)*
 
 ---
