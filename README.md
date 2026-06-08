@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/15401698-c969-452a-8a5f-3032ddb7f93c
 <div align="center">
   <img src="assets/icon.png.png" width="120" height="120" alt="App Icon"/>
   <h1>Luxe Store</h1>
@@ -76,7 +78,8 @@ Designed with an intense focus on modern UX/UI, Luxe Store delivers a premium sh
 <img width="324" height="720" alt="screenshot_20260605-181545_720" src="https://github.com/user-attachments/assets/aab86050-0a5e-4f88-8b4b-68d904ebb9df" />
 
 ## 🎥 Demo Video
-https://uncanny-consulting.slack.com/files/U0B2R7TRBDM/F0B8G42S7N1/vn20260605_185059.mp4?origin_team=T03AH3SMZTR&origin_channel=D0B2R7U21N3
+https://github.com/user-attachments/assets/f0b04d50-c20f-4191-929e-4cb7a04b62a5
+
 
 *(Note: The demo video may looks low on quality but app runs at a crisp 60fps in high resolution, showcasing the liquid glass background animations!)*
 
