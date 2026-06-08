@@ -20,7 +20,7 @@ Designed with an intense focus on modern UX/UI, Luxe Store delivers a premium sh
 *   **Reactive State Management:** Fully type-safe and highly scalable state management powered by **Riverpod**.
 
 ## 🛠 Tech Stack
-*   **Framework:** Flutter (Dart)
+*   **Framework:** Flutter 3.29.2 (Dart)
 *   **State Management:** Riverpod (`flutter_riverpod`, `riverpod_annotation`)
 *   **Routing:** GoRouter
 *   **Networking:** Dio
