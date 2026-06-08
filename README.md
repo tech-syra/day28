@@ -1,5 +1,3 @@
-
-https://github.com/user-attachments/assets/15401698-c969-452a-8a5f-3032ddb7f93c
 <div align="center">
   <img src="assets/icon.png.png" width="120" height="120" alt="App Icon"/>
   <h1>Luxe Store</h1>
